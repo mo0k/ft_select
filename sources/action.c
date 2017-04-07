@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:16:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/03/16 02:06:51 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/04/07 20:13:58 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,15 @@ int		do_esc(void)
 
 void	del(void *files, size_t size)
 {
-	(void)files;
+	//free(((t_file*)(files))->name);
+	//((t_file*)(files))->name = NULL;
+	printf("...........%p...........files:%lu, files*:%lu\n", files, sizeof(t_file), sizeof(t_file*));
+	//
+	//free((files));
+	printf(".......AFTER FREE...\n");
+	//files = NULL;
 	(void)size;
+	(void)files;
 }
 
 int		do_delete(t_list **files, t_list **pos)
@@ -56,6 +63,7 @@ int		do_delete(t_list **files, t_list **pos)
 	}
 	else
 		ft_lstdelnext(&(*pos)->prev, &del);
+	printf("TEST.............................................\n");
 	stock_data(NULL)->lstlen--;
 	if (*files == NULL)
 		do_esc();

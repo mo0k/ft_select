@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 01:58:30 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/03/16 01:54:31 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/03/17 17:49:08 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void		print_stock(t_select stock)
 	//printf("display col:%d\n", stock.display.col);
 	//printf("display row:%d\n", stock.display.row);
 	printf("addr stock->file:%p\n", stock.file);
+	printf("addr stock->file->content:%p\n", (stock.file)->content);
 	printf("addr stock->lstlen:%d\n", stock.lstlen);
 }
 
@@ -217,11 +218,16 @@ static int	ft_select(t_select	*stock)
 	init_winsize(&(stock->winsize), tgetnum("li"), tgetnum("co"));
 	stock->lstlen = ft_lstlen(stock->file);
 	print_stock(*stock);
+		printf("POSITION:%p => sizeof t_list:%lu, sizeof t_file:%lu\n",position,sizeof(t_list) , sizeof(t_file));
 	while (42)
 	{
 		tputs(tgetstr("cl", NULL), AFFCNT, &my_putchar);
+		print_stock(*stock);
+
 		display(stock->file, stock->lstlen, ((t_win)(stock->winsize)).col,
 		 		((t_win)(stock->winsize)).row);
+		printf("POSITION:%p POSITION->content:%p => sizeof t_file:%lu\n", position, position->content, sizeof(t_file));
+
 		tputs(tgoto(tgetstr("cm", NULL), 0, ((t_win)(stock->winsize)).row), AFFCNT, &my_putchar);
 		ft_putstr_fd(stock->search, isatty(STDOUT_FILENO));
 		ft_memset(buff, 0, 4);

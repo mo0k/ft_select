@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 23:41:12 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/03/16 00:06:35 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/04/07 22:06:23 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	ft_putendlcolor(char const *s, char *color)
 {
-	int		i;
-
-	i = 0;
 	if (!s)
 		return ;
 	ft_putstr(color);
