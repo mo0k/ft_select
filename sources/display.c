@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 01:57:55 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/03/16 02:07:13 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/04/25 19:55:01 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void			do_display(t_list *f, int col, int line, int len_max)
 		while (count_line < line)
 		{
 			printlist(f);
+			//printf("%p\n", f);
 			++count_line;
 			tputs(tgoto(tgetstr("cm", NULL), count_col, count_line), AFFCNT, &my_putchar);
 			if (f && f->next)
@@ -72,6 +73,7 @@ static int			chk_winsize(int col, int row, int nbr_col, int nbr_row)
 
 void				display(t_list *f, int lstlen, t_uint col, t_uint row)
 {
+	printf("IN DISPLAY \n");
 	int				len_max;
 	t_select		*stock;
 
@@ -93,6 +95,8 @@ void				display(t_list *f, int lstlen, t_uint col, t_uint row)
 	if (!chk_winsize(col, row, (stock->display).col * len_max, (stock->display).row)
 		|| lstlen > (int)((stock->display).col * ((stock->display).row - MARGIN_TOP)))
 		return (ft_putendl_fd(ERR_WINSIZE, STDERR_FILENO));
+	printf("IN DISPLAY - BEFORE DO_DISPLAY\n");
 	do_display(f, col, (stock->display).row, len_max);
+	printf("IN DISPLAY - AFTER DO_DISPLAY\n");
 	return ;
 }

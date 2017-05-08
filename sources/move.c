@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:17:03 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/03/16 01:43:58 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/08 13:09:59 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,17 @@ int			move_down(t_list *files, t_list **pos)
 
 	if (!files || !pos || !*pos)
 		return (0);
+	printf("IN MOVE_DOWN\n");
+	printf("DEBUG:\n\tfiles:%p\n\tpos:%p\t*pos:%p\n",files, pos, *pos );
 	next = !((*pos)->next) ? files : (*pos)->next;
+	printf("\tnext:%p\tprev:%p\n", next, next->prev);
+	printf("test1\n");
 	((t_file*)((*pos)->content))->current = 0;
+	printf("test2\n");
 	((t_file*)(next->content))->current = 1;
+	printf("test3\n");
 	*pos = next;
+	printf("END MOVE_DOWN => position:%p\n", *pos);
 	return (1);
 }
 /*
