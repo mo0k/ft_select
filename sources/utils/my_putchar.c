@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_signals.h                                   :+:      :+:    :+:   */
+/*   my_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 18:01:02 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/02/21 18:09:20 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/05/08 19:49:50 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/05/09 01:21:23 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MANAGE_SIGNALS_H
-# define MANAGE_SIGNALS_H
+#include <ft_select.h>
 
-# include <ft_select.h>
-
-void		catch_signals(void);
-void		handler_signals(int sig);
-
-#endif
+int			my_putchar(int c)
+{
+	write(isatty(STDOUT_FILENO), &c, 1);
+	return (1);
+}

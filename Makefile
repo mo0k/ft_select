@@ -21,15 +21,27 @@ INC_PATH = includes
 SRC_PATH = sources
 
 SRC =	$(SRC_PATH)/ft_select.c			\
-		$(SRC_PATH)/manage_termios.c	\
-		$(SRC_PATH)/manage_signals.c	\
 		$(SRC_PATH)/input.c				\
-		$(SRC_PATH)/print.c				\
-		$(SRC_PATH)/move.c				\
-		$(SRC_PATH)/jump.c				\
-		$(SRC_PATH)/action.c			\
 		$(SRC_PATH)/error.c			\
-		$(SRC_PATH)/display.c			
+		$(SRC_PATH)/init.c			\
+		$(SRC_PATH)/actions/delete.c	\
+		$(SRC_PATH)/actions/esc.c	\
+		$(SRC_PATH)/actions/jump.c	\
+		$(SRC_PATH)/actions/move.c	\
+		$(SRC_PATH)/actions/return.c	\
+		$(SRC_PATH)/actions/select.c	\
+		$(SRC_PATH)/display/print.c				\
+		$(SRC_PATH)/display/display.c			\
+		$(SRC_PATH)/keyboard/handler.c				\
+		$(SRC_PATH)/keyboard/termios.c				\
+		$(SRC_PATH)/search/do_search.c	\
+		$(SRC_PATH)/search/del_char.c				\
+		$(SRC_PATH)/search/quit_mode.c				\
+		$(SRC_PATH)/signals/handler.c				\
+		$(SRC_PATH)/signals/catch.c				\
+		$(SRC_PATH)/utils/my_isprint.c			\
+		$(SRC_PATH)/utils/my_putchar.c			\
+		$(SRC_PATH)/utils/stock.c
 
 OSRC = $(SRC:.c=.o)
 

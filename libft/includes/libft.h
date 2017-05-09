@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:50:56 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/03/16 00:05:46 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/08 20:20:12 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,9 @@ t_list			*ft_lstselect(t_list **l, char *elem, int (*f)(t_list*, char*));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_lstrev(t_list **alst);
 size_t			ft_lstlen(t_list *lst);
+int				ft_lstjump(t_list *root, t_list **jump, int len);
+int				ft_lstjump_circle(t_list *root, t_list **jump, int len);
+int				ft_lstpos(t_list *list, t_list *elem);
 
 size_t			ft_nbrlen(int nbr);
 void			*ft_memrcpy(void *dst, const void *src, size_t n);

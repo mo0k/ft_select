@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:59:51 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/03/17 16:41:20 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/09 02:42:58 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,41 @@
 
 # include <ft_select.h>
 
-typedef struct	termios t_term;
+typedef struct termios	t_term;
 
-typedef unsigned int t_uint;
+typedef unsigned int	t_uint;
 
-typedef struct	s_file
+typedef struct			s_file
 {
-	char	*name;
-	int		selected;
-	int		current;
-}				t_file;
+	char				*name;
+	int					selected;
+	int					current;
+}						t_file;
 
-typedef struct s_win
+typedef struct			s_win
 {
-	t_uint	col;
-	t_uint	row;
-}				t_win;
+	t_uint				col;
+	t_uint				row;
+}						t_win;
 
-typedef struct s_display
+typedef struct			s_display
 {
-	t_uint	col;
-	t_uint	row;
-}				t_display;
+	t_uint				col;
+	t_uint				row;
+}						t_display;
 
-typedef struct	s_select
+typedef struct			s_select
 {
-	t_term		*new_term;
-	t_term		*origin_term;
-	t_win		winsize;
-	t_list		*file;
-	t_display	display;
-	int			id_mode;
-	char 		*search;
-	int			len_items;
-	int			lstlen;
-	int			selected;
-}				t_select;
+	t_term				*new_term;
+	t_term				*origin_term;
+	t_win				winsize;
+	t_list				*file;
+	t_display			display;
+	int					id_mode;
+	char				*search;
+	int					len_items;
+	int					lstlen;
+	int					selected;
+}						t_select;
 
 #endif

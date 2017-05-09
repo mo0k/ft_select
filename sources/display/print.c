@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 17:59:29 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/03/16 02:08:29 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/05/09 01:16:35 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/05/09 01:36:18 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static void		set_style_cursor(int state)
 	if (!state)
 	{
 		ft_putstr_fd(">", isatty(STDOUT_FILENO));
-		tputs(tgetstr("us",NULL), AFFCNT, &my_putchar);
+		tputs(tgetstr("us", NULL), AFFCNT, &my_putchar);
 	}
 	else
 	{
-		tputs(tgetstr("ue",NULL), AFFCNT, &my_putchar);
+		tputs(tgetstr("ue", NULL), AFFCNT, &my_putchar);
 		ft_putstr_fd("<", isatty(STDOUT_FILENO));
 	}
 }
@@ -48,13 +48,13 @@ static void		set_style_selected(int state)
 {
 	if (!state)
 	{
-		tputs(tgetstr("mr",NULL), AFFCNT, &my_putchar);
+		tputs(tgetstr("mr", NULL), AFFCNT, &my_putchar);
 		ft_putstr_fd(C_CYAN, isatty(STDOUT_FILENO));
 	}
 	else
 	{
 		ft_putstr_fd(C_DFL, isatty(STDOUT_FILENO));
-		tputs(tgetstr("me",NULL), AFFCNT, &my_putchar);
+		tputs(tgetstr("me", NULL), AFFCNT, &my_putchar);
 	}
 }
 
@@ -83,14 +83,13 @@ void			printlist(t_list *elem)
 
 void			print_header(t_select *stock)
 {
+	int x;
+
 	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, &my_putchar);
-	if (stock_data(NULL)->id_mode == ID_MOVE)
+	if (stock->id_mode == ID_MOVE)
 		ft_putstr_fd(M_MOVE, isatty(STDOUT_FILENO));
 	else if (stock_data(NULL)->id_mode == ID_SEARCH)
 		ft_putstr_fd(M_SEARCH, isatty(STDOUT_FILENO));
-
-	int x;
-
 	x = ((t_win)(stock->winsize)).col - ft_strlen("selected") - 1
 			- (int)ft_nbrlen(stock->selected);
 	tputs(tgoto(tgetstr("cm", NULL), x, 0), 1, &my_putchar);

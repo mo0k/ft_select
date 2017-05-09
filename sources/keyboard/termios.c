@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_termios.c                                   :+:      :+:    :+:   */
+/*   termios.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:30:40 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/03/16 01:44:07 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/09 01:21:03 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <manage_termios.h>
+#include <terms.h>
 
 int			init_config_term(t_term *new, t_term *origin)
 {
 	char	*name;
-	int 	ret;
+	int		ret;
 
 	(!getenv("TERM")) ? fatal(ERR_GETENV) : (name = getenv("TERM"));
 	if ((ret = tgetent(NULL, name)) == -1)
@@ -24,7 +24,8 @@ int			init_config_term(t_term *new, t_term *origin)
 		fatal(ERR_TGETENT_NOENTRY);
 	if (tcgetattr(0, new) == -1)
 		fatal(ERR_TCGETATTR);
-	if (!(origin = (t_term*)ft_memmove((t_term*)origin, (t_term*)new, sizeof(t_term))))
+	if (!(origin = (t_term*)ft_memmove((t_term*)origin,
+		(t_term*)new, sizeof(t_term))))
 		exit(EXIT_FAILURE);
 	new->c_lflag &= ~(ICANON | ECHO);
 	new->c_cc[VMIN] = 1;
@@ -40,7 +41,7 @@ int			restore_config_term(void)
 {
 	if (tcsetattr(0, TCSADRAIN, stock_data(NULL)->origin_term) == -1)
 		exit(EXIT_FAILURE);
-	tputs(tgetstr("te", NULL),  AFFCNT, &my_putchar);
-	tputs(tgetstr("ve", NULL),  AFFCNT, &my_putchar);
+	tputs(tgetstr("te", NULL), AFFCNT, &my_putchar);
+	tputs(tgetstr("ve", NULL), AFFCNT, &my_putchar);
 	return (1);
 }

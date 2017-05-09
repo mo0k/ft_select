@@ -92,6 +92,9 @@ SRCS = 	$(SRCS_PATH)/ft_memset.c			\
 		$(SRCS_PATH)/ft_lstiter.c		\
 		$(SRCS_PATH)/ft_lstselect.c		\
 		$(SRCS_PATH)/ft_lstmap.c			\
+		$(SRCS_PATH)/ft_lstjump_circle.c			\
+		$(SRCS_PATH)/ft_lstjump.c			\
+		$(SRCS_PATH)/ft_lstpos.c			\
 		$(SRCS_PATH)/get_next_line.c		\
 		$(SRCS_PATH)/ft_nbrlen.c			\
 		$(SRCS_PATH)/ft_memrcpy.c		\

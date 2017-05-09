@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 17:43:53 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/03/17 16:43:19 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/09 01:07:25 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			input(int ac, char **av, t_list **file)
 {
 	t_file	new;
-	int	i;
+	int		i;
 
 	i = 1;
 	if (ac == 1)

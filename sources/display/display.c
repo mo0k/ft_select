@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 01:57:55 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/04/25 19:55:01 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/09 01:15:24 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int			get_nbr_col(int lenlst, int row)
 {
-	int ret;
+	int				ret;
 
 	ret = lenlst / (row);
 	if (lenlst % (row) != 0)
@@ -24,37 +24,37 @@ static int			get_nbr_col(int lenlst, int row)
 
 static void			do_display(t_list *f, int col, int line, int len_max)
 {
-	int				count_col;
-	int				count_line;
+	int				c_col;
+	int				c_line;
 
-	count_line = 0 + MARGIN_TOP;
-	count_col = 0;
+	c_line = 0 + MARGIN_TOP;
+	c_col = 0;
 	tputs(tgetstr("cl", NULL), AFFCNT, &my_putchar);
 	print_header(stock_data(NULL));
-	tputs(tgoto(tgetstr("cm", NULL), count_col, count_line), AFFCNT, &my_putchar);
-	while (count_col < col)
+	tputs(tgoto(tgetstr("cm", NULL), c_col, c_line), AFFCNT, &my_putchar);
+	while (c_col < col)
 	{
-		while (count_line < line)
+		while (c_line < line)
 		{
 			printlist(f);
-			//printf("%p\n", f);
-			++count_line;
-			tputs(tgoto(tgetstr("cm", NULL), count_col, count_line), AFFCNT, &my_putchar);
+			++c_line;
+			tputs(tgoto(tgetstr("cm", NULL), c_col, c_line),
+				AFFCNT, &my_putchar);
 			if (f && f->next)
 				f = f->next;
 			else
 				return ;
 		}
-		count_line = 0 + MARGIN_TOP;
-		count_col += len_max;
-		tputs(tgoto(tgetstr("cm", NULL), count_col, count_line), AFFCNT, &my_putchar);
+		c_line = 0 + MARGIN_TOP;
+		c_col += len_max;
+		tputs(tgoto(tgetstr("cm", NULL), c_col, c_line), AFFCNT, &my_putchar);
 	}
 }
 
 static int			name_strlen_max(t_list *lst)
 {
-	int			len_max;
-	int			len_tmp;
+	int				len_max;
+	int				len_tmp;
 
 	len_max = 0;
 	while (lst)
@@ -73,7 +73,6 @@ static int			chk_winsize(int col, int row, int nbr_col, int nbr_row)
 
 void				display(t_list *f, int lstlen, t_uint col, t_uint row)
 {
-	printf("IN DISPLAY \n");
 	int				len_max;
 	t_select		*stock;
 
@@ -90,13 +89,13 @@ void				display(t_list *f, int lstlen, t_uint col, t_uint row)
 	else
 	{
 		(stock->display).row = row - MARGIN_BOTTON;
-		(stock->display).col = get_nbr_col(lstlen, row - MARGIN_BOTTON - MARGIN_TOP);
+		(stock->display).col = get_nbr_col(lstlen,
+								row - MARGIN_BOTTON - MARGIN_TOP);
 	}
-	if (!chk_winsize(col, row, (stock->display).col * len_max, (stock->display).row)
-		|| lstlen > (int)((stock->display).col * ((stock->display).row - MARGIN_TOP)))
+	if (!chk_winsize(col, row, (stock->display).col * len_max,
+		(stock->display).row) || lstlen > (int)((stock->display).col *
+		((stock->display).row - MARGIN_TOP)))
 		return (ft_putendl_fd(ERR_WINSIZE, STDERR_FILENO));
-	printf("IN DISPLAY - BEFORE DO_DISPLAY\n");
 	do_display(f, col, (stock->display).row, len_max);
-	printf("IN DISPLAY - AFTER DO_DISPLAY\n");
 	return ;
 }

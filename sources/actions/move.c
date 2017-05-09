@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:17:03 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/08 13:09:59 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/09 01:06:45 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <move.h>
 
-int			move_up(t_list *files, t_list **pos)
+int				move_up(t_list *files, t_list **pos)
 {
-	t_list	*prev;
+	t_list		*prev;
+	t_list		*tmp;
 
 	if (!files || !pos || !*pos)
 		return (0);
@@ -22,8 +23,6 @@ int			move_up(t_list *files, t_list **pos)
 		prev = (*pos)->prev;
 	else
 	{
-		t_list *tmp;
-
 		tmp = files;
 		while (tmp->next)
 			tmp = tmp->next;
@@ -35,98 +34,22 @@ int			move_up(t_list *files, t_list **pos)
 	return (1);
 }
 
-int			move_down(t_list *files, t_list **pos)
+int				move_down(t_list *files, t_list **pos)
 {
-	t_list	*next;
+	t_list		*next;
 
 	if (!files || !pos || !*pos)
 		return (0);
-	printf("IN MOVE_DOWN\n");
-	printf("DEBUG:\n\tfiles:%p\n\tpos:%p\t*pos:%p\n",files, pos, *pos );
 	next = !((*pos)->next) ? files : (*pos)->next;
-	printf("\tnext:%p\tprev:%p\n", next, next->prev);
-	printf("test1\n");
 	((t_file*)((*pos)->content))->current = 0;
-	printf("test2\n");
 	((t_file*)(next->content))->current = 1;
-	printf("test3\n");
 	*pos = next;
-	printf("END MOVE_DOWN => position:%p\n", *pos);
-	return (1);
-}
-/*
-static int 			lstjump(t_list *lst, t_list **jump, int len)
-{
-	t_list *cur;
-
-	cur = lst;
-	while (cur && len > 0)
-	{
-		//printf("cur->next:%p\n", cur->next);
-		cur = cur->next;
-		--len;
-	}
-	if (!cur || len > 0)
-	{
-		*jump = NULL;
-		return (0);
-	}
-	*jump = cur;
-	return (1);
-}
-*/
-static int 			lstjump_circle(t_list *lst, t_list **jump, int len)
-{
-	t_list *cur;
-
-	cur = *jump;
-	if (len < 0)
-	{
-		len *= -1;
-		while (len > 0)
-		{
-			if (cur && !cur->prev)
-				while (cur->next)
-					cur = cur->next;
-			else
-				cur = cur->prev;
-			--len;
-		}
-	}
-	else
-	{
-		while (len > 0)
-		{
-			if (!cur)
-				cur = lst;
-			cur = cur->next;
-			--len;
-		}
-	}
-	*jump = ((cur) ? cur : lst);
 	return (1);
 }
 
-static int	lstpos(t_list *list, t_list *elem)
+int				move_left(t_list *files, t_list **pos)
 {
-	int		i;
-
-	i = 1;
-	if (!list || !elem)
-		return (0);
-	while (list)
-	{
-		if (list == elem)
-			return (i);
-		list = list->next;
-		i++;
-	}
-	return (0);
-}
-
-int			move_left(t_list *files, t_list **pos)
-{
-	t_list	*next;
+	t_list		*next;
 	t_select	*stock;
 
 	if (!files || !pos || !*pos)
@@ -136,16 +59,18 @@ int			move_left(t_list *files, t_list **pos)
 	if ((stock->display).col == 1)
 		move_up(files, pos);
 	else
-		lstjump_circle(files, pos, get_njump(stock->display, lstpos(files, *pos), ft_lstlen(files), LEFT));
+		ft_lstjump_circle(files, pos,
+			get_njump(stock->display,
+				ft_lstpos(files, *pos), ft_lstlen(files), LEFT));
 	((t_file*)((*pos)->content))->current = 1;
 	if (next != *pos)
 		((t_file*)(next->content))->current = 0;
 	return (1);
 }
 
-int			move_right(t_list *files, t_list **pos)
+int				move_right(t_list *files, t_list **pos)
 {
-	t_list	*next;
+	t_list		*next;
 	t_select	*stock;
 
 	if (!files || !pos || !*pos)
@@ -155,7 +80,9 @@ int			move_right(t_list *files, t_list **pos)
 	if ((stock->display).col == 1)
 		move_down(files, pos);
 	else
-		lstjump_circle(files, pos, get_njump(stock->display, lstpos(files, *pos), ft_lstlen(files), RIGHT));
+		ft_lstjump_circle(files, pos,
+			get_njump(stock->display,
+				ft_lstpos(files, *pos), ft_lstlen(files), RIGHT));
 	((t_file*)((*pos)->content))->current = 1;
 	if (next != *pos)
 		((t_file*)(next->content))->current = 0;
