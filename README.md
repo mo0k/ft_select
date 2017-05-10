@@ -26,3 +26,10 @@ votre shell</p>
  </ul>
  
 ![Alt text](Visuel_2.png?raw=true "MODE SEARCH")
+
+<hr/>
+
+<h3>Autres utilisations:</h3><br/>
+ $> set reponse = `ft_select choix1 choix2 choix3 choix4`<br/>
+ $> more `ft_select *.c`<br/>
+ $> rm `ft_select ~/*`<br/>
