@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 01:59:33 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/09 02:50:05 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/09 08:07:33 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int			init(t_select *stock);
 void		init_winsize(t_win *winsize, t_uint row, t_uint col);
 int			my_putchar(int c);
 int			my_isprint(int c);
-void		result(t_list *elem);
 void		fatal(char *error);
 
 #endif

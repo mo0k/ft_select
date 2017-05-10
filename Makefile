@@ -43,6 +43,18 @@ SRC =	$(SRC_PATH)/ft_select.c			\
 		$(SRC_PATH)/utils/my_putchar.c			\
 		$(SRC_PATH)/utils/stock.c
 
+INC =	$(INC_PATH)/action.h			\
+		$(INC_PATH)/display.h			\
+		$(INC_PATH)/ft_select.h			\
+		$(INC_PATH)/input.h			\
+		$(INC_PATH)/keyboard.h			\
+		$(INC_PATH)/move.h			\
+		$(INC_PATH)/my_types.h			\
+		$(INC_PATH)/print.h			\
+		$(INC_PATH)/search.h			\
+		$(INC_PATH)/signals.h			\
+		$(INC_PATH)/terms.h
+
 OSRC = $(SRC:.c=.o)
 
 LIB_PATH = libft
@@ -53,7 +65,7 @@ OK_COLOR=\x1b[32;01m
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(OSRC)
+$(NAME): $(LIB) $(OSRC) $(INC)
 	@echo "Compiling..."
 	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses
 	@echo "$(OK_COLOR)$@ compiled.$(NO_COLOR)"

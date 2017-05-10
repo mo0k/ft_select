@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:00:48 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/09 01:28:57 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/09 15:02:38 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void			winsize_changed(void)
 	tmp = stock_data(NULL);
 	ioctl(isatty(STDOUT_FILENO), TIOCGWINSZ, &ws);
 	init_winsize(&(tmp->winsize), ws.ws_row, ws.ws_col);
+	if (ws.ws_row <= 2)
+		return (ft_putendl_fd(ERR_WINSIZE, STDERR_FILENO));
 	display(tmp->file, ft_lstlen(tmp->file), ((t_win)(tmp->winsize)).col,
 	((t_win)(tmp->winsize)).row);
 }
