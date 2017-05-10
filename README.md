@@ -15,4 +15,14 @@ votre shell</p>
  </ul>
  
 ![Alt text](Visuel_1.png?raw=true "MODE MOVE")
+
+<h3>MODE SEARCH</h3>
+<h4><i>Commandes</i></h4>
+<ul>
+  <li>Touche ESC pour quitter mode</li>
+  <li>Touche RETURN pour selectionner</li>
+  <li>Touche DELETE pour supprimer le dernier charactère saisi</li>
+  <li>Touche BACKSPACE ou DELETE pour supprimer de la liste</li>
+ </ul>
+ 
 ![Alt text](Visuel_2.png?raw=true "MODE SEARCH")
