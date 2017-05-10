@@ -29,7 +29,7 @@ votre shell</p>
 
 <hr/>
 
-<h3>Autres utilisations:</h3><br/>
+<h3 style="margin-bottom:5px">Autres utilisations:</h3><br/>
  $> set reponse = `ft_select choix1 choix2 choix3 choix4`<br/>
  $> more `ft_select *.c`<br/>
  $> rm `ft_select ~/*`<br/>
